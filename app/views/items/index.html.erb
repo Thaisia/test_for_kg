@@ -1,0 +1,10 @@
+<h3>Поиск</h3>
+  <%= form_for :searching do |f| %>
+    <p>
+      Искать
+      <%= f.text_field :query_str %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
