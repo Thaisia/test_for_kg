@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'items#index'
-  get 'import' => 'imports#import'
+  root 'items#index', as: 'home'
+  get 'import' => 'imports#import', as: 'import'
 
   resources :items
 
