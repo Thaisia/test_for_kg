@@ -1,9 +1,8 @@
 class CreateCategories < ActiveRecord::Migration[5.2]
   def change
     create_table :categories do |t|
-      t.integer :cat_id
-      t.integer :cat_parent_id
-      t.string :cat_name
+      t.integer :parent_id
+      t.string :name
 
       t.timestamps
     end

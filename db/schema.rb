@@ -13,31 +13,29 @@
 ActiveRecord::Schema.define(version: 2019_07_29_210354) do
 
   create_table "categories", force: :cascade do |t|
-    t.integer "cat_id"
-    t.integer "cat_parent_id"
-    t.string "cat_name"
+    t.integer "parent_id"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "item_cat_id"
-    t.string "item_url"
-    t.string "item_name"
+    t.string "category_id"
+    t.string "url"
+    t.string "name"
     t.integer "price"
     t.string "currency_id"
-    t.boolean "avaliable"
+    t.string "avaliable"
     t.string "picture"
-    t.boolean "store"
-    t.boolean "pickup"
-    t.boolean "delivery"
+    t.string "store"
+    t.text "pickup"
+    t.string "delivery"
     t.integer "local_delivery_cost"
     t.string "vendor"
-    t.string "item_model"
+    t.string "model"
     t.text "description"
     t.text "sales_notes"
-    t.boolean "manufacturer_warranty"
+    t.string "manufacturer_warranty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
