@@ -2,7 +2,8 @@ module ImportsHelper
   def import_xml
     begin
       puts "************** IMPORT **************"
-
+      check_items = Item.all.map(&:id)
+      check_cats = Category.all.map(&:id)
       require 'rubygems'
       require 'nokogiri'
       require 'open-uri'
@@ -14,12 +15,19 @@ module ImportsHelper
 
           xml_doc = Nokogiri::XML.parse(open(url), "UTF-8")
           xml_doc.xpath("//categories/category").each do |row_cat|
+
             row_cat['parentId'] == nil ? parent = nil : parent = (cat_code+row_cat['parentId'].to_s).to_i
             row_cat_id = cat_code+row_cat['id'].to_s
+            if check_cats.include?(row_cat_id.to_i)
+              next
+            end
             Category.create(:id => row_cat_id.to_i, :parent_id => parent, :name => row_cat.text)
           end
 
           xml_doc.xpath("//offers/offer").each do |row_item|
+            if check_items.include?(row_item['id'].to_i)
+              next
+            end
             cats_list = []
             row_item.xpath('categoryId').each { |id| cats_list.push (cat_code+id.text).to_i}
 
