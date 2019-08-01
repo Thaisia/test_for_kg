@@ -1,13 +1,19 @@
 <h3>Поиск</h3>
-  <%= form_for :searching do |f| %>
-    <p>
-      Искать!
-      <%= f.text_field :query_str %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
-    <p>
+  <%= form_tag(items_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+    <%= submit_tag "Search" %>
+  <% end %>
 
-    </p>
+  <% if @items.blank? %>
+    <h4>NO ITEMS <%= params[:search] %>.</h4>
+  <% else %>
+    <%= @items.length %>
+    <%= will_paginate %>
+    <% @items.each do |item|%>
+    <div> Название:
+      <%= item.name %>
+    </div>
+    <% end %>
+    <%= will_paginate %>
+
   <% end %>
