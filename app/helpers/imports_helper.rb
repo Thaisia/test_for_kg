@@ -23,8 +23,10 @@ module ImportsHelper
             cats_list = []
             row_item.xpath('categoryId').each { |id| cats_list.push (cat_code+id.text).to_i}
 
-            pics_list = []
-            row_item.xpath('picture').each { |id| pics_list.push id.text}
+            pics_list = ""
+            row_item.xpath('picture').each do |id|
+              pics_list.concat(id.text, ",")
+            end
 
             Item.create(:id => row_item['id'],
                         :category_id => cats_list.to_s,
@@ -50,7 +52,8 @@ module ImportsHelper
       end
       puts "*************** END ****************"
       @imp_res = "Успешно"
-    rescue
+    rescue => error
+      puts error
       @imp_res = "Неудачный"
     end
 

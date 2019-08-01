@@ -1,8 +1,11 @@
 <div class="my-0 mr-md-auto font-weight-bold">
-    <%= @item.name = "" ? @item.model : @item.name %>
+    <%= @item.name %>
+</div>
+<div>
+  <%= @item.model%>
 </div>
 <br>
-<div>
+<div> Цена:
     <%= @item.price %> р.
 </div>
 <div> В наличии:
@@ -12,9 +15,21 @@
       нет
     <% end %>
 </div>
-<div>
-    <%= @item.picture %>
+<div> Возможность доставки:
+    <% if @item.delivery == "true" %>
+       да
+    <% else %>
+      нет
+    <% end %>
+</div>
+<div> Описание:
+    <%= @item.description %>
+</div>
+<div> Страна:
+    <%= @item.vendor %>
 </div>
 <div>
-    <%= @item.description %>
+    <% @picture_arr.each do |pic_url| %>
+      <%= image_tag "#{pic_url}", :class => "style_image" %>
+    <% end %>
 </div>
