@@ -5,15 +5,20 @@
   <% end %>
 
   <% if @items.blank? %>
+
     <h4>NO ITEMS <%= params[:search] %>.</h4>
+
   <% else %>
-    <%= @items.length %>
+
     <%= will_paginate %>
     <% @items.each do |item|%>
-    <div> Название:
-      <%= item.name %>
-    </div>
+      <div>
+        <% if item.name == "" %>
+          <%= link_to "#{item.model}", item%>
+        <% else %>
+          <%= link_to "#{item.name}", item %>
+        <% end %>
+      </div>
     <% end %>
     <%= will_paginate %>
-
   <% end %>

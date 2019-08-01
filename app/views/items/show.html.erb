@@ -1,0 +1,20 @@
+<div class="my-0 mr-md-auto font-weight-bold">
+    <%= @item.name = "" ? @item.model : @item.name %>
+</div>
+<br>
+<div>
+    <%= @item.price %> р.
+</div>
+<div> В наличии:
+    <% if @item.avaliable == "true" %>
+       да
+    <% else %>
+      нет
+    <% end %>
+</div>
+<div>
+    <%= @item.picture %>
+</div>
+<div>
+    <%= @item.description %>
+</div>

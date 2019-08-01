@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_210354) do
+ActiveRecord::Schema.define(version: 2019_08_01_161338) do
 
   create_table "categories", force: :cascade do |t|
     t.integer "parent_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_categories_on_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -38,6 +39,8 @@ ActiveRecord::Schema.define(version: 2019_07_29_210354) do
     t.string "manufacturer_warranty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_items_on_id"
+    t.index ["name"], name: "index_items_on_name"
   end
 
 end
