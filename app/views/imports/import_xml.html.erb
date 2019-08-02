@@ -1,0 +1,14 @@
+<h3>Результат импорта:</h3>
+
+<% if @imp_res == "Неудачный"%>
+  <p>
+    неудача, попробуйте еще раз
+  </p>
+  <p>
+    <%= link_to 'import_xml', import_xml_path, method: :post %>
+  </p>
+<% else%>
+<p>
+  Успешно
+</p>
+<% end%>

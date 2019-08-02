@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  include ItemsHelper
 
   def index
     @items = Item.all.order("created_at DESC").paginate(page: params[:page])
@@ -9,7 +10,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    puts @item.methods.sort   
+    @picture_arr = picture_pulling(params[:id])
   end
 
 end

@@ -10,7 +10,7 @@
 
   <% else %>
 
-    <%= will_paginate %>
+      <br>
     <% @items.each do |item|%>
       <div>
         <% if item.name == "" %>
@@ -20,5 +20,6 @@
         <% end %>
       </div>
     <% end %>
-    <%= will_paginate %>
+    <br>
+    <%= will_paginate  @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer  %>
   <% end %>
